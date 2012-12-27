@@ -1,0 +1,56 @@
+#main {
+  width: 800px;
+  margin: auto;
+}
+#main input {
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+#form {
+  /*width: 500px;*/
+  /*margin: auto;*/
+  margin-top: 180px;
+  /*text-align: center;*/
+}
+#form input[type="text"] {
+  min-width: 600px;
+  min-height: 28px;
+  padding: 5px;
+}
+#form input[type="submit"] {
+  min-height: 38px;
+  font-size: 110%;
+}
+#result {
+  /*margin*/
+  /*width: 500px;*/
+  /*text-align: center;*/
+  margin: 15px auto auto 200px;
+}
+#result.hidden {
+  visibility: hidden;
+}
+#result input {
+  min-height: 25px;
+  min-width: 210px;
+  margin-bottom: 10px;
+  padding: 5px;
+}
+#result #qrcode {
+  margin-left: 8px;
+  min-width: 200px;
+  min-height: 200px;
+
+}
+#result.shorten {
+  margin-top: 180px;
+}
+/*#result span {*/
+  /*display: block;*/
+/*}*/
+#result img:-moz-broken {
+  -moz-force-broken-image-icon: 1;
+  /*width: 24px;*/
+  /*height: 24px;*/
+}
+

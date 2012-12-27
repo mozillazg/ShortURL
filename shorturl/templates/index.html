@@ -1,0 +1,16 @@
+$var title:
+$var cssfiles:
+$var jsfiles: static/postformdata.js
+
+<div id="main">
+  <div id="form">
+    <form action="/shorten" method="post">
+      <span id="url"><input id="long-url" type="text" name="url" autofocus="autofocus"></span>
+      <span id="submit"><input id="submit-data" type="submit" value="Shorten"><span>
+    </form>
+  </div>
+  <div id="result" class="hidden">
+    <div><input type="text" name="shorten-url" value="" id="shorten"></div>
+    <div><img id="qrcode" src="" alt="QR Code"></div>
+  </div>
+</div>
