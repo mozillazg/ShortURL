@@ -1,16 +1,15 @@
-$var title:
-$var cssfiles:
-$var jsfiles: static/postformdata.js
+$var title: Shorten URL
 
 <div id="main">
   <div id="form">
     <form action="/shorten" method="post">
-      <span id="url"><input id="long-url" type="text" name="url" autofocus="autofocus"></span>
-      <span id="submit"><input id="submit-data" type="submit" value="Shorten"><span>
+      <input id="url" type="url" name="url" autofocus="autofocus" required="required" placeholder="Input URL">
+      <input id="submit" type="submit" value="Shorten" class="pointer">
     </form>
+    <div id="msg" class="hidden">msg</div>
   </div>
   <div id="result" class="hidden">
-    <div><input type="text" name="shorten-url" value="" id="shorten"></div>
+    <div><input type="url" readonly="readonly" name="shorten-url" value="" id="shorten"></div>
     <div><img id="qrcode" src="" alt="QR Code"></div>
   </div>
 </div>

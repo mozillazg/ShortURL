@@ -1,34 +1,74 @@
+/* TODO 各种大小自适应（响应式 web 设计） */
+body {
+  background-image: url("/static/dot.png");
+  margin: 0;
+  padding: 0;
+}
 #main {
   width: 800px;
-  margin: auto;
+  margin-top: 2px;
+  margin-left: auto;
+  margin-right: auto;
 }
 #main input {
+  margin-right: 8px;
   border-radius: 5px;
-  border: 1px solid #ccc;
+  border: 1px solid #CCC;
+  /*font-style: normal;*/
+  font-size: 110%;
+  color: #AAA;
+}
+#main input:focus {
+  box-shadow: 0 0 3px #6699BB;
+  color: #000;
 }
 #form {
   /*width: 500px;*/
   /*margin: auto;*/
   margin-top: 180px;
+  padding: 5px;
   /*text-align: center;*/
 }
-#form input[type="text"] {
+#form input.warning {
+  box-shadow: 0 0 5px red;
+}
+#form input#url {
   min-width: 600px;
   min-height: 28px;
   padding: 5px;
 }
-#form input[type="submit"] {
+#form input#submit {
+  /*background-color: #EEE;*/
   min-height: 38px;
   font-size: 110%;
+}
+#form input.pointer {
+  cursor: pointer;
+  /*cursor: hand;*/
+}
+#form input.progress {
+  cursor: progress;
+}
+#form input#submit:hover {
+  color: #000;
+}
+#msg.hidden {
+  display: none;
+}
+#msg {
+  margin-top: 5px;
+  color: red;
+  font-size: 110%;
+  font-weight: bold;
+}
+#result.hidden {
+  visibility: hidden;
 }
 #result {
   /*margin*/
   /*width: 500px;*/
   /*text-align: center;*/
   margin: 15px auto auto 200px;
-}
-#result.hidden {
-  visibility: hidden;
 }
 #result input {
   min-height: 25px;
@@ -38,11 +78,11 @@
 }
 #result #qrcode {
   margin-left: 8px;
-  min-width: 200px;
-  min-height: 200px;
+  max-width: 210px;
+  max-height: 210px;
 
 }
-#result.shorten {
+#shorten-page {
   margin-top: 180px;
 }
 /*#result span {*/

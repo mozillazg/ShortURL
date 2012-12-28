@@ -1,26 +1,15 @@
-$def with (content)
+$def with(content)
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
-    $ default_title = "Shorten URL"
-    $if content.title:
-        <title>content.title</title>
-    $else:
-        <title>$default_title</title>
+    <title>$content.title</title>
     <link rel="stylesheet" meida="screen" href="/static/base.css">
-    $if content.cssfiles:
-        $for f in content.cssfiles.split():
-            <link rel="stylesheet" meida="screen" href="$f">
   </head>
   <body>
 
     $:content
 
-    <script src="static/addloadevent.js"></script>
-    <script src="static/gethttpobject.js"></script>
-    $if content.jsfiles:
-        $for f in content.jsfiles.split():
-            <script src="$f"></script>
+    <script src="static/base.js"></script>
   </body>
 </html>
