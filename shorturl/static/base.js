@@ -43,25 +43,64 @@ function validForm() {
   var msg = document.getElementById("msg")
   if (!url) {
     document.getElementById("url").className = "warning"
-    msg.lastChild.nodeValue = "↑↑ Can't be whitespace chars! ↑↑";
+    msg.lastChild.nodeValue = "↑↑ Valid URL! ↑↑";
     msg.className = "visible";
     return false;
   }
   msg.className = "hidden";
   return true;
 }
+// 生成 QR Code
+function create_qrcode(text) {//, typeNumber, errorCorrectLevel) {
+  var qr = new QRCode(4, QRErrorCorrectLevel.H);
+  var html;
+  qr.addData(text);
+  qr.make();
+  html = '<table id="qrcode-table">';
+  for (var r = 0; r < qr.getModuleCount(); r++) {
+    html +="<tr>";
+    for (var c = 0; c < qr.getModuleCount(); c++) {
+      if (qr.isDark(r, c) ) {
+        html += '<td class="dark" />';
+      } else {
+        html += '<td class="white" />';
+      }
+    }
+    html += "</tr>";
+  }
+  html += "</table>";
+  return html;
+}
 
 // ajax 提交 URL 数据，返回短网址信息
 function displayResult() {
   if (!document.getElementById) return false;
+  if (!JSON) {
+    JSON = {};
+    JSON.parse = function (json) {
+      return eval("(" + json + ")");
+    };
+  }
   if ((request.readyState == 4) && request.status == 200) {
     var responseJson = JSON.parse(request.responseText);
     var shorten = responseJson.shorten;
-    var qrcodeSrc = "http://qrcode101.duapp.com/qr?chl=" + shorten + "&chs=200x200&chld=M|0"
+    //var qrcodeSrc = "http://qrcode101.duapp.com/qr?chl=" + shorten + "&chs=200x200&chld=M|0"
+    var result = document.getElementById("result");
     var qrcode = document.getElementById("qrcode");
+    var qrcodeTable = create_qrcode(shorten);
+    if (!qrcode) {
+      qrcode = document.createElement('div');
+      qrcode.id = "qrcode";
+      qrcode.innerHTML = qrcodeTable;
+      result.appendChild(qrcode);
+    }
+    else {
+      qrcode.innerHTML = qrcodeTable;
+    }
+    //var qrcode = document.getElementById("qrcode");
     document.getElementById("shorten").value = shorten;
-    qrcode.src= qrcodeSrc;
-    qrcode.alt = "QR Code for URL " + shorten;
+    //qrcode.src= qrcodeSrc;
+    //qrcode.alt = "QR Code for URL " + shorten;
     document.getElementById("result").className = "visible";
     document.getElementById("shorten").focus();
     //document.getElementById("shorten").select();
