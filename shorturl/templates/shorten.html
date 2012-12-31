@@ -1,12 +1,12 @@
 $def with (shorten)
-$var title: Shorten URL
+$var title: Shorten Result
 
 <div id="main">
 
   <div id="shorten-page">
     <div id="result">
       <div><input type="url" name="shorten-url" value="$shorten.url" id="shorten" readonly="readonly"></div>
-      <div><img id="qrcode" src="$shorten.qr" alt="QR Code for URL $shorten.url"></div>
+      <div id="qrcode">$:shorten.qr_table</div>
     </div>
   </div>
 

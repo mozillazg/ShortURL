@@ -28,11 +28,11 @@ function validForm() {
   var msg = document.getElementById("msg")
   if (!url) {
     document.getElementById("url").className = "warning"
-    msg.lastChild.nodeValue = "Valid URL!";
+    msg.lastChild.nodeValue = "Can't be white-space chars!";
     msg.className = "visible";
     return false;
   } else {
-    url.value = addScheme(url);
+    document.getElementById("url").value = addScheme(url);
   }
   msg.className = "hidden";
   return true;

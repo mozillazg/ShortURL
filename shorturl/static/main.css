@@ -1,14 +1,14 @@
-/* TODO 各种大小自适应（响应式 web 设计） */
 body {
   background-image: url("/static/dot.png");
   margin: 0;
   padding: 0;
 }
 #main {
-  width: 800px;
+  width: 50%;
   margin-top: 2px;
   margin-left: auto;
   margin-right: auto;
+  font-size: 110%;
 }
 #main input {
   margin-right: 8px;
@@ -25,7 +25,7 @@ body {
 #form {
   /*width: 500px;*/
   /*margin: auto;*/
-  margin-top: 180px;
+  margin-top: 20%;
   padding: 5px;
   /*text-align: center;*/
 }
@@ -33,14 +33,18 @@ body {
   box-shadow: 0 0 5px red;
 }
 #form input#url {
-  min-width: 600px;
+  min-width: 90%;
   min-height: 28px;
   padding: 5px;
+  /*overflow: hidden;*/
 }
 #form input#submit {
   /*background-color: #EEE;*/
+  /*margin-top: 4px;*/
+  margin-right: 8%;
   min-height: 38px;
   font-size: 110%;
+  float: right;
 }
 #form input.pointer {
   cursor: pointer;
@@ -57,29 +61,40 @@ body {
 }
 #msg {
   margin-top: 5px;
+  margin-bottom: 5px;
   color: red;
   font-size: 110%;
   /*font-weight: bold;*/
+  /*float: left;*/
+  /*clear: both;*/
 }
 #result.hidden {
   visibility: hidden;
 }
 #result {
+  width: 100%;
+}
+#result #shorten, #result #qrcode{
   /*margin*/
-  /*width: 500px;*/
+  /*width: 50%;*/
   /*text-align: center;*/
-  margin: 15px auto auto 200px;
+  clear: both;
+  margin: 15px auto 1% 20%;
+  display: block;
 }
 #result input {
   min-height: 25px;
-  min-width: 210px;
+  width: 40%;
   margin-bottom: 10px;
   padding: 5px;
+  float: left;
 }
 #result #qrcode {
- margin-left: 8px;
- width: 200px;
- height: 200px;
+  clear: both;
+  /*padding-top: 5%;*/
+  margin-left: 25%;
+  width: 200px;
+  height: 200px;
 }
 #shorten-page {
   margin-top: 180px;
@@ -119,4 +134,21 @@ table#qrcode-table tr td.dark {
 }
 table#qrcode-table tr td.white {
   background-color: #fff;
+}
+
+@media screen and (max-device-width: 680px) {
+  #main {
+    width: auto;
+  }
+}
+@media screen and (max-device-width: 370px) {
+  #main {
+    width: auto;
+  }
+  #result input#shorten {
+    width: auto;
+  }
+  #result #qrcode {
+    margin-left: auto;
+  }
 }

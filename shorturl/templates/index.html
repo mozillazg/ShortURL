@@ -5,11 +5,10 @@ $var title: Shorten URL
     <form action="/shorten" method="post">
       <input id="url" type="url" name="url" autofocus="autofocus" required="required" placeholder="Input URL">
       <input id="submit" type="submit" value="Shorten" class="pointer">
+      <div id="msg" class="hidden">msg</div>
     </form>
-    <div id="msg" class="hidden">msg</div>
   </div>
   <div id="result" class="hidden">
     <div><input type="url" readonly="readonly" name="shorten-url" value="" id="shorten"></div>
-    <!--<div><img id="qrcode" src="#" alt="QR Code"></div>-->
   </div>
 </div>

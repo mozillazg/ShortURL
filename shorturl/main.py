@@ -5,6 +5,7 @@ import urllib
 import json
 import re
 import web
+from libs.qrcode import QRCode, ErrorCorrectLevel
 import settings
 import models
 
@@ -81,9 +82,25 @@ class Shorten(object):
             web.header('Content-Type', 'application/json')
             return json.dumps({'shorten': shorten, 'expand': url})
         else:
-            qr_api = 'http://qrcode101.duapp.com/qr?chl=%s&chs=200x200&chld=M|0'
+            qr = QRCode()
+            qr.setTypeNumber(4)
+            qr.setErrorCorrectLevel(ErrorCorrectLevel.H)
+            qr.addData(shorten)
+            qr.make()
+            html = '<table id="qrcode-table">'
+            for r in range(qr.getModuleCount()):
+                html += "<tr>"
+                for c in range(qr.getModuleCount()):
+                    if qr.isDark(r, c):
+                        html += '<td class="dark" />'
+                    else:
+                        html += '<td class="white" />'
+                html += '</tr>'
+            html += '</table>'
+
+            #qr_api = 'http://qrcode101.duapp.com/qr?chl=%s&chs=200x200&chld=M|0'
             shortens = web.storage({'url': shorten,
-                                    'qr': qr_api % urllib.quote(shorten),
+                                    'qr_table': html,
                                     })
             return render.shorten(shortens)
 

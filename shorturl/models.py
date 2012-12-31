@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import web
-import short_url
+from libs import short_url
 
 
 class DB(object):
