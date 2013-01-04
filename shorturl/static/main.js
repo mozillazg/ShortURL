@@ -14,18 +14,17 @@ function addLoadEvent(func) {
 
 // 去除字符串首尾空白符（" dog ".trim() === "dog"）
 // http://stackoverflow.com/questions/1418050/string-strip-for-javascript
-if(typeof(String.prototype.trim) === "undefined")
-{
-    String.prototype.trim = function()
-    {
-        return String(this).replace(/^\s+|\s+$/g, '');
-    };
+if (typeof(String.prototype.trim) === "undefined") {
+  String.prototype.trim = function() {
+    return String(this).replace(/^\s+|\s+$/g, '');
+  };
 }
+
 // 表单验证
 function validForm() {
   if (!document.getElementById) return false;
   var url = document.getElementById("url").value.trim();
-  var msg = document.getElementById("msg")
+  var msg = document.getElementById("msg");
   if (!url) {
     document.getElementById("url").className = "warning"
     msg.lastChild.nodeValue = "Can't be white-space chars!";
@@ -105,7 +104,6 @@ function displayResult(request) {
   if ((request.readyState == 4) && request.status == 200) {
     var responseJson = JSON.parse(request.responseText);
     var shorten = responseJson.shorten;
-    //var qrcodeSrc = "http://qrcode101.duapp.com/qr?chl=" + shorten + "&chs=200x200&chld=M|0"
     var result = document.getElementById("result");
     var qrcode = document.getElementById("qrcode");
     var qrcodeTable = create_qrcode(shorten);
@@ -118,9 +116,7 @@ function displayResult(request) {
     else {
       qrcode.innerHTML = qrcodeTable;
     }
-    //var qrcode = document.getElementById("qrcode");
     document.getElementById("shorten").value = shorten;
-    //qrcode.src= qrcodeSrc;
     //qrcode.alt = "QR Code for URL " + shorten;
     document.getElementById("result").className = "visible";
     document.getElementById("shorten").focus();
@@ -159,6 +155,8 @@ function postFormData() {
 
 // 拦截 submit 事件，提交前验证数据并改用 ajax 发送数据
 function submitEvent() {
+  if (!document.getElementById) return false;
+  if (!document.getElementById("submit")) return false;
   document.getElementById("submit").onclick = function () {
     if (validForm()) {
       postFormData();

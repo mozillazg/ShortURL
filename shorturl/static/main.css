@@ -1,5 +1,7 @@
 body {
   background-image: url("/static/dot.png");
+  background-attachment: fixed;
+  background-color: transparent;
   margin: 0;
   padding: 0;
 }
@@ -151,4 +153,22 @@ table#qrcode-table tr td.white {
   #result #qrcode {
     margin-left: auto;
   }
+}
+
+#footer {
+  position: absolute;
+  bottom: 3%;
+  right: 10%;
+}
+a {
+  color: #999;
+  text-decoration: none;
+  border-bottom: 1px dotted #AAA;
+}
+span a {
+  padding: 2px;
+}
+a:hover {
+  background-color: #EEE;
+  color: #000;
 }

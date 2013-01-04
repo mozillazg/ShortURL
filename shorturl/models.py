@@ -11,6 +11,8 @@ class DB(object):
         self.db_write = web.database(**db_write_kwargs)
 
     def exist_expand(self, long_url):
+        """检查数据库中是否已有相关记录，有则返回短 URL
+        """
         result = self.db_read.where(table='url', what='shorten',
                                     expand=long_url)
         if result:

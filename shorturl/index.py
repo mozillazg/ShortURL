@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import urllib
 import json
 import re
 import web
@@ -21,7 +20,6 @@ db = models.DB(db_read_kwargs=DB_R, db_write_kwargs=DB_W)
 class Index(object):
     def GET(self):
         return render.index()
-        #return web.input()
 
 
 class Shorten(object):
@@ -33,7 +31,7 @@ class Shorten(object):
 
         给 URL 添加 scheme(qq.com -> http://qq.com)
         """
-        # 支持的 URL 协议
+        # 支持的 URL scheme
         scheme2 = re.compile(r'(?i)^[a-z][a-z.+\-]*://')
         scheme3 = ('git@', 'mailto:', 'javascript:', 'about:', 'opera:',
                    'afp:', 'aim:', 'apt:', 'attachment:', 'bitcoin:',
@@ -49,20 +47,46 @@ class Shorten(object):
         url_lower = url.lower()
 
         scheme = scheme2.match(url_lower)
-        if scheme:
-            #url = scheme.group()
-            #url += urllib.quote(''.join(url_lower.split('//')[1:]))
-            pass
-        else:
+        if not scheme:
             for scheme in scheme3:
                 url_splits = url_lower.split(scheme)
                 if len(url_splits) > 1:
-                    #url = scheme + urllib.quote(''.join(url_splits[1:]))
                     break
             else:
                 url = 'http://' + url
-                #url = 'http://' + urllib.quote(url)
         return url
+
+    def qrcode_table(self, data, type_number=4, error_correct_level='H'):
+        """qrcode_table(data) -> html
+
+        生成 QR Code html 表格，可以通过 css 控制黑白块的显示
+        """
+        if error_correct_level == 'L':
+            error_correct_level = ErrorCorrectLevel.L
+        elif error_correct_level == 'M':
+            error_correct_level = ErrorCorrectLevel.M
+        elif error_correct_level == 'Q':
+            error_correct_level = ErrorCorrectLevel.Q
+        else:
+            error_correct_level = ErrorCorrectLevel.H
+
+        qr = QRCode()
+        qr.setTypeNumber(type_number)
+        qr.setErrorCorrectLevel(error_correct_level)
+        qr.addData(data)
+        qr.make()
+
+        html = '<table id="qrcode-table">'
+        for r in range(qr.getModuleCount()):
+            html += "<tr>"
+            for c in range(qr.getModuleCount()):
+                if qr.isDark(r, c):
+                    html += '<td class="dark" />'
+                else:
+                    html += '<td class="white" />'
+            html += '</tr>'
+        html += '</table>'
+        return html
 
     def POST(self, get_json=False):
         url = web.input(url='').url.encode('utf8').strip()
@@ -70,7 +94,8 @@ class Shorten(object):
             return web.badrequest()
 
         url = self.add_scheme(url)
-        if debug: print repr(url)
+        if debug:
+            print repr(url)
 
         exists = self.db.exist_expand(url)
         if exists:
@@ -78,29 +103,13 @@ class Shorten(object):
         else:
             shorten = self.db.add_url(url).shorten
         shorten = web.ctx.homedomain + '/' + shorten
+
         if get_json:
             web.header('Content-Type', 'application/json')
             return json.dumps({'shorten': shorten, 'expand': url})
         else:
-            qr = QRCode()
-            qr.setTypeNumber(4)
-            qr.setErrorCorrectLevel(ErrorCorrectLevel.H)
-            qr.addData(shorten)
-            qr.make()
-            html = '<table id="qrcode-table">'
-            for r in range(qr.getModuleCount()):
-                html += "<tr>"
-                for c in range(qr.getModuleCount()):
-                    if qr.isDark(r, c):
-                        html += '<td class="dark" />'
-                    else:
-                        html += '<td class="white" />'
-                html += '</tr>'
-            html += '</table>'
-
-            #qr_api = 'http://qrcode101.duapp.com/qr?chl=%s&chs=200x200&chld=M|0'
             shortens = web.storage({'url': shorten,
-                                    'qr_table': html,
+                                    'qr_table': self.qrcode_table(shorten),
                                     })
             return render.shorten(shortens)
 
@@ -122,15 +131,17 @@ class Expand(object):
         if expand:
             return web.redirect(expand)
         else:
-            return web.notfound()
+            return web.index()
 
     def POST(self):
         shorten = web.input(shorten='').shorten.encode('utf8').strip()
         web.header('Content-Type', 'application/json')
         if shorten and re.match('[a-zA-Z0-9]{5,}$', str(shorten)):
             expand = self.get_expand(shorten)
-            if debug: print repr(expand)
+            if debug:
+                print repr(expand)
             if expand:
+                shorten = web.ctx.homedomain + '/' + shorten
                 return json.dumps({'shorten': shorten, 'expand': expand})
             else:
                 return json.dumps({'shorten': '', 'expand': ''})
@@ -139,4 +150,5 @@ class Expand(object):
 
 
 if __name__ == '__main__':
+    # web.wsgi.runwsgi = lambda func, addr=None: web.wsgi.runfcgi(func, addr)
     app.run()
