@@ -12,9 +12,7 @@ debug = web.config.debug = settings.DE_BUG
 render = web.template.render(settings.TEMPLATE_DIR,
                              base=settings.BASE_TEMPLATE)
 app = web.application(settings.URLS, globals())
-DB_R = settings.DATABASES_READ
-DB_W = settings.DATABASES_WRITE
-db = models.DB(db_read_kwargs=DB_R, db_write_kwargs=DB_W)
+db = models.DB(settings.DATABASES)
 
 
 class Index(object):
@@ -32,7 +30,7 @@ class Shorten(object):
         给 URL 添加 scheme(qq.com -> http://qq.com)
         """
         # 支持的 URL scheme
-        scheme2 = re.compile(r'(?i)^[a-z][a-z0-9+.\-]*://\S+')
+        scheme2 = re.compile(r'(?i)^[a-z][a-z0-9+.\-]*://')
         scheme3 = ('git@', 'mailto:', 'javascript:', 'about:', 'opera:',
                    'afp:', 'aim:', 'apt:', 'attachment:', 'bitcoin:',
                    'callto:', 'cid:', 'data:', 'dav:', 'dns:', 'fax:', 'feed:',

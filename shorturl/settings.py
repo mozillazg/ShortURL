@@ -14,16 +14,8 @@ URLS = (
     '/.*', 'Index',
 )
 
-# 数据库配置，读写分离
-DATABASES_READ = {
-    'dbn': 'mysql',
-    'db': 'shorturl',
-    'user': 'readonly',
-    'pw': 'readonly_passwd',
-    'host': 'localhost',
-    'port': 3306,
-}
-DATABASES_WRITE = {
+# 数据库配置
+DATABASES = {
     'dbn': 'mysql',
     'db': 'shorturl',
     'user': 'py',
