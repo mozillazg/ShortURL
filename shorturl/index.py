@@ -32,7 +32,7 @@ class Shorten(object):
         给 URL 添加 scheme(qq.com -> http://qq.com)
         """
         # 支持的 URL scheme
-        scheme2 = re.compile(r'(?i)^[a-z][a-z.+\-]*://')
+        scheme2 = re.compile(r'(?i)^[a-z][a-z0-9+.\-]*://\S+')
         scheme3 = ('git@', 'mailto:', 'javascript:', 'about:', 'opera:',
                    'afp:', 'aim:', 'apt:', 'attachment:', 'bitcoin:',
                    'callto:', 'cid:', 'data:', 'dav:', 'dns:', 'fax:', 'feed:',
