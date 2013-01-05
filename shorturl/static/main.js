@@ -64,7 +64,7 @@ function addScheme(url) {
   var url = url;
   var hasScheme;
   // 支持的 URL 协议
-  var scheme2 = /^[a-z][a-z0-9+.\-]*:\/\/\S+/i;
+  var scheme2 = /^[a-z][a-z0-9+.\-]*:\/\//i;
   var scheme3 = ['git@', 'mailto:', 'javascript:', 'about:', 'opera:',
                  'afp:', 'aim:', 'apt:', 'attachment:', 'bitcoin:',
                  'callto:', 'cid:', 'data:', 'dav:', 'dns:', 'fax:', 'feed:',
