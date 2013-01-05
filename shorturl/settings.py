@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-DE_BUG = True  # 调试模式
+DEBUG = True  # 调试模式
 TEMPLATE_DIR = 'templates/'  # 模板目录
 BASE_TEMPLATE = 'base'  # 基础模板
 

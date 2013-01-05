@@ -8,7 +8,7 @@ from libs.qrcode import QRCode, ErrorCorrectLevel
 import settings
 import models
 
-debug = web.config.debug = settings.DE_BUG
+debug = web.config.debug = settings.DEBUG
 render = web.template.render(settings.TEMPLATE_DIR,
                              base=settings.BASE_TEMPLATE)
 app = web.application(settings.URLS, globals())
