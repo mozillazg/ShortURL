@@ -35,7 +35,6 @@ body {
   width: 100%;
   min-height: 28px;
   padding: 5px 0;
-  /*overflow: hidden;*/
 }
 #form input#submit {
   margin-right: 0;
@@ -45,7 +44,6 @@ body {
 }
 #form input.pointer {
   cursor: pointer;
-  /*cursor: hand;*/
 }
 #form input.progress {
   cursor: progress;
@@ -61,9 +59,6 @@ body {
   margin-bottom: 5px;
   color: red;
   font-size: 110%;
-  /*font-weight: bold;*/
-  /*float: left;*/
-  /*clear: both;*/
 }
 #result.hidden {
   visibility: hidden;
@@ -74,7 +69,6 @@ body {
   margin: auto;
 }
 #result #shorten, #result #qrcode{
-  /*margin*/
   display: block;
   width: 80%;
   clear: both;
@@ -84,29 +78,14 @@ body {
   min-height: 25px;
   margin-bottom: 10px;
   padding: 5px;
-  /*float: left;*/
 }
-/*#result #qrcode {*/
-  /*clear: both;*/
-  /*[>padding-top: 5%;<]*/
-  /*[>margin-left: 25%;<]*/
-  /*width: 200px;*/
-  /*height: 200px;*/
-/*}*/
 #shorten-page {
   margin-top: 30%;
 }
-/*#result span {*/
-  /*display: block;*/
-/*}*/
 #result img:-moz-broken {
   -moz-force-broken-image-icon: 1;
-  /*width: 24px;*/
-  /*height: 24px;*/
 }
 #result div#qrcode {
-  /*width: 82%;*/
-  /*height: 82%;*/
   width: 180px;
   height: 180px;
   background-color: #fff;
@@ -117,8 +96,6 @@ body {
 table#qrcode-table {
   border: 0 none #0000ff;
   border-collapse: collapse;
-  /*width: 80%;*/
-  /*height: 80%;*/
   width: 180px;
   height: 180px;
   margin: auto;
@@ -129,7 +106,6 @@ table#qrcode-table tr td {
   padding: 0;
   margin: 0;
   width: 4px;
-  /*height: 4px;*/
 }
 table#qrcode-table tr td.dark {
   background-color: #000;
