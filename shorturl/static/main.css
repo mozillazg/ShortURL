@@ -13,10 +13,9 @@ body {
   font-size: 110%;
 }
 #main input {
-  margin-right: 8px;
+  margin: 1px auto;
   border-radius: 5px;
   border: 1px solid #CCC;
-  /*font-style: normal;*/
   font-size: 110%;
   color: #AAA;
 }
@@ -25,25 +24,21 @@ body {
   color: #000;
 }
 #form {
-  /*width: 500px;*/
-  /*margin: auto;*/
+  width: 100%;
   margin-top: 20%;
-  padding: 5px;
-  /*text-align: center;*/
+  padding: 5px 0;
 }
 #form input.warning {
   box-shadow: 0 0 5px red;
 }
 #form input#url {
-  min-width: 90%;
+  width: 100%;
   min-height: 28px;
-  padding: 5px;
+  padding: 5px 0;
   /*overflow: hidden;*/
 }
 #form input#submit {
-  /*background-color: #EEE;*/
-  /*margin-top: 4px;*/
-  margin-right: 8%;
+  margin-right: 0;
   min-height: 38px;
   font-size: 110%;
   float: right;
@@ -74,32 +69,32 @@ body {
   visibility: hidden;
 }
 #result {
-  width: 100%;
+  clear: both;
+  width: 50%;
+  margin: auto;
 }
 #result #shorten, #result #qrcode{
   /*margin*/
-  /*width: 50%;*/
-  /*text-align: center;*/
-  clear: both;
-  margin: 15px auto 1% 20%;
   display: block;
+  width: 80%;
+  clear: both;
+  margin: 5px auto;
 }
 #result input {
   min-height: 25px;
-  width: 40%;
   margin-bottom: 10px;
   padding: 5px;
-  float: left;
+  /*float: left;*/
 }
-#result #qrcode {
-  clear: both;
-  /*padding-top: 5%;*/
-  margin-left: 25%;
-  width: 200px;
-  height: 200px;
-}
+/*#result #qrcode {*/
+  /*clear: both;*/
+  /*[>padding-top: 5%;<]*/
+  /*[>margin-left: 25%;<]*/
+  /*width: 200px;*/
+  /*height: 200px;*/
+/*}*/
 #shorten-page {
-  margin-top: 180px;
+  margin-top: 30%;
 }
 /*#result span {*/
   /*display: block;*/
@@ -110,18 +105,23 @@ body {
   /*height: 24px;*/
 }
 #result div#qrcode {
+  /*width: 82%;*/
+  /*height: 82%;*/
   width: 180px;
   height: 180px;
   background-color: #fff;
-  padding: 10px;
+  padding: 20px;
   border-radius: 5px;
+  margin: auto;
 }
 table#qrcode-table {
   border: 0 none #0000ff;
   border-collapse: collapse;
+  /*width: 80%;*/
+  /*height: 80%;*/
   width: 180px;
   height: 180px;
-  /*margin: auto;*/
+  margin: auto;
 }
 table#qrcode-table tr td {
   border: 0 none #0000ff;
@@ -147,18 +147,20 @@ table#qrcode-table tr td.white {
   #main {
     width: auto;
   }
-  #result input#shorten {
+  #result {
     width: auto;
   }
-  #result #qrcode {
-    margin-left: auto;
+  #result input#shorten {
+    width: auto;
   }
 }
 
 #footer {
-  position: absolute;
-  bottom: 3%;
-  right: 10%;
+  clear: both;
+  margin-top: 10%;
+  font-size: 90%;
+  float: right;
+  margin-right: 5%;
 }
 a {
   color: #999;
