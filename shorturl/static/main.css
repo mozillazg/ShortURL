@@ -88,18 +88,18 @@ body {
   -moz-force-broken-image-icon: 1;
 }
 #result div#qrcode {
-  /*width: 164px;*/
-  /*height: 164px;*/
+  width: 200px;
+  height: 200px;
   background-color: #fff;
-  /*padding: 20px;*/
+  padding: 20px;
   border-radius: 5px;
   margin: auto;
 }
 table#qrcode-table {
   border: 0 none #0000ff;
   border-collapse: collapse;
-  /*width: 164px;*/
-  /*height: 164px;*/
+  width: 200px;
+  height: 200px;
   margin: auto;
 }
 table#qrcode-table tr td {
@@ -123,7 +123,7 @@ table#qrcode-table tr td.white {
   /*right: 5%;*/
   margin-top: 2%;
   margin-bottom: 2%;
-  font-size: 90%;
+  font-size: 100%;
   /*float: right;*/
   text-align: center;
 }

@@ -45,14 +45,14 @@ function create_qrcode(text) {//, typeNumber, errorCorrectLevel) {
   var html;
   qr.addData(text);
   qr.make();
-  html = "<table style='border-width: 0px; border-style: none; border-color: #0000ff; border-collapse: collapse;'>";
+  html = '<table id="qrcode-table">';
   for (var r = 0; r < qr.getModuleCount(); r++) {
     html +="<tr>";
     for (var c = 0; c < qr.getModuleCount(); c++) {
       if (qr.isDark(r, c) ) {
-        html += "<td style='border-width: 0px; border-style: none; border-color: #0000ff; border-collapse: collapse; padding: 0; margin: 0; width: 5px; height: 5px; background-color: #000000;'/>";
+        html += '<td class="dark" />';
       } else {
-        html += "<td style='border-width: 0px; border-style: none; border-color: #0000ff; border-collapse: collapse; padding: 0; margin: 0; width: 5px; height: 5px; background-color: #ffffff;'/>";
+        html += '<td class="white" />';
       }
     }
     html += "</tr>";
