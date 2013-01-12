@@ -1,6 +1,6 @@
 # shorturl
 
-A URL shortener site powered by Python 2.6 and web.py 2.
+A URL shortener site powered by Python and web.py.
 
 ## Features
 
@@ -12,16 +12,16 @@ A URL shortener site powered by Python 2.6 and web.py 2.
 
 <http://3sd.me>
 
-### API
+## API
 
-#### Long -> Short
+Long -> Short
 
-    URL: http://3sd.me/js/shorten
+    URL: http://3sd.me/j/shorten
     Method: POST
     Parameters: url
     Return: JSON
 
-Sample:
+### Examples
 
 curl:
 
@@ -47,14 +47,14 @@ curl:
     }
 
 
-#### Short -> Long
+Short -> Long
 
-    URL: http://3sd.me/js/expand
+    URL: http://3sd.me/j/expand
     Method: POST
     Parameters: shorten
     Return: JSON
 
-Sample:
+### Examples
 
 curl:
 

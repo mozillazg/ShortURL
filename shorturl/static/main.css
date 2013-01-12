@@ -65,14 +65,19 @@ body {
 }
 #result {
   clear: both;
-  width: 50%;
+  width: auto;
   margin: auto;
+  padding: 5px auto;
+  min-height: 250px;
 }
 #result #shorten, #result #qrcode{
   display: block;
   width: 80%;
   clear: both;
   margin: 5px auto;
+}
+#result #shorten {
+  width: 50%;
 }
 #result input {
   min-height: 25px;
@@ -114,29 +119,17 @@ table#qrcode-table tr td.white {
   background-color: #fff;
 }
 
-@media screen and (max-device-width: 680px) {
-  #main {
-    width: auto;
-  }
-}
-@media screen and (max-device-width: 370px) {
-  #main {
-    width: auto;
-  }
-  #result {
-    width: auto;
-  }
-  #result input#shorten {
-    width: auto;
-  }
-}
-
 #footer {
   clear: both;
-  margin-top: 10%;
+  /*position: relative;*/
+  /*top: 95%;*/
+  /*right: 5%;*/
+  /*margin-top: 10%;*/
   font-size: 90%;
-  float: right;
-  margin-right: 5%;
+  /*float: right;*/
+  text-align: center;
+}
+#footer #source-code {
 }
 a {
   color: #999;
@@ -149,4 +142,21 @@ span a {
 a:hover {
   background-color: #EEE;
   color: #000;
+}
+
+@media screen and (max-device-width: 680px) {
+  /*#main {*/
+    /*width: auto;*/
+  /*}*/
+/*}*/
+/*@media screen and (max-device-width: 370px) {*/
+  #main {
+    width: auto !important;
+  }
+  #result {
+    width: auto !important;
+  }
+  #result input#shorten {
+    width: auto !important;
+  }
 }

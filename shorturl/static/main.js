@@ -107,6 +107,10 @@ function displayResult(request) {
     var result = document.getElementById("result");
     var qrcode = document.getElementById("qrcode");
     var qrcodeTable = create_qrcode(shorten);
+    if (!result.innerHTML.trim()){
+      var html = '<div><input type="url" name="shorten-url" value="" id="shorten"></div>';
+      result.innerHTML = html;
+    }
     if (!qrcode) {
       qrcode = document.createElement('div');
       qrcode.id = "qrcode";
@@ -120,7 +124,7 @@ function displayResult(request) {
     //qrcode.alt = "QR Code for URL " + shorten;
     document.getElementById("result").className = "visible";
     document.getElementById("shorten").focus();
-    //document.getElementById("shorten").select();
+    document.getElementById("shorten").select();
     document.getElementById("submit").className = "pointer";
   }
 }
