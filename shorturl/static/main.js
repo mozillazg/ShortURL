@@ -26,11 +26,12 @@ function validForm() {
   var url = document.getElementById("url").value.trim();
   var msg = document.getElementById("msg");
   if (!url) {
-    document.getElementById("url").className = "warning"
-    msg.lastChild.nodeValue = "Can't be white-space chars!";
+    document.getElementById("url").className = "warning";
+    msg.innerHTML = "Can't be white-space chars!";
     msg.className = "visible";
     return false;
   } else {
+    document.getElementById("url").className = "";
     document.getElementById("url").value = addScheme(url);
   }
   msg.className = "hidden";
@@ -44,14 +45,14 @@ function create_qrcode(text) {//, typeNumber, errorCorrectLevel) {
   var html;
   qr.addData(text);
   qr.make();
-  html = '<table id="qrcode-table">';
+  html = "<table style='border-width: 0px; border-style: none; border-color: #0000ff; border-collapse: collapse;'>";
   for (var r = 0; r < qr.getModuleCount(); r++) {
     html +="<tr>";
     for (var c = 0; c < qr.getModuleCount(); c++) {
       if (qr.isDark(r, c) ) {
-        html += '<td class="dark" />';
+        html += "<td style='border-width: 0px; border-style: none; border-color: #0000ff; border-collapse: collapse; padding: 0; margin: 0; width: 5px; height: 5px; background-color: #000000;'/>";
       } else {
-        html += '<td class="white" />';
+        html += "<td style='border-width: 0px; border-style: none; border-color: #0000ff; border-collapse: collapse; padding: 0; margin: 0; width: 5px; height: 5px; background-color: #ffffff;'/>";
       }
     }
     html += "</tr>";

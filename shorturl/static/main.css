@@ -38,9 +38,10 @@ body {
 }
 #form input#submit {
   margin-right: 0;
-  min-height: 38px;
   font-size: 110%;
   float: right;
+  padding: 5px;
+  margin-bottom: 5px;
 }
 #form input.pointer {
   cursor: pointer;
@@ -63,8 +64,7 @@ body {
 #result {
   clear: both;
   width: auto;
-  margin: auto;
-  padding: 5px auto;
+  margin: 10px auto;
   min-height: 250px;
 }
 #result #shorten, #result #qrcode{
@@ -88,32 +88,32 @@ body {
   -moz-force-broken-image-icon: 1;
 }
 #result div#qrcode {
-  width: 180px;
-  height: 180px;
+  /*width: 164px;*/
+  /*height: 164px;*/
   background-color: #fff;
-  padding: 20px;
+  /*padding: 20px;*/
   border-radius: 5px;
   margin: auto;
 }
 table#qrcode-table {
   border: 0 none #0000ff;
   border-collapse: collapse;
-  width: 180px;
-  height: 180px;
+  /*width: 164px;*/
+  /*height: 164px;*/
   margin: auto;
 }
 table#qrcode-table tr td {
-  border: 0 none #0000ff;
-  border-collapse: collapse;
-  padding: 0;
-  margin: 0;
-  width: 4px;
+  border: 0 none #0000ff !important;
+  border-collapse: collapse !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  width: 4px !important;
 }
 table#qrcode-table tr td.dark {
-  background-color: #000;
+  background-color: #000 !important;
 }
 table#qrcode-table tr td.white {
-  background-color: #fff;
+  background-color: #fff !important;
 }
 
 #footer {
