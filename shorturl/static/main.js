@@ -107,10 +107,6 @@ function displayResult(request) {
     var result = document.getElementById("result");
     var qrcode = document.getElementById("qrcode");
     var qrcodeTable = create_qrcode(shorten);
-    if (!result.innerHTML.trim()){
-      var html = '<div><input type="url" name="shorten-url" value="" id="shorten"></div>';
-      result.innerHTML = html;
-    }
     if (!qrcode) {
       qrcode = document.createElement('div');
       qrcode.id = "qrcode";
@@ -122,7 +118,7 @@ function displayResult(request) {
     }
     document.getElementById("shorten").value = shorten;
     //qrcode.alt = "QR Code for URL " + shorten;
-    document.getElementById("result").className = "visible";
+    document.getElementById("result").style.visibility = "visible";
     document.getElementById("shorten").focus();
     document.getElementById("shorten").select();
     document.getElementById("submit").className = "pointer";
@@ -170,3 +166,21 @@ function submitEvent() {
 }
 
 addLoadEvent(submitEvent);
+
+
+// 当文本框获得焦点时，全选文本框内容
+function selectAll() {
+  if (!document.getElementsByTagName) return false;
+  if (!document.getElementsByTagName("input")) return false;
+  var textInputs = document.getElementsByTagName("input");
+  for (var i=0; i<textInputs.length; i++) {
+    var input = textInputs[i];
+    if ((input.type == "text") || (input.type == "url")) {
+      input.onclick = function() {
+        this.select();
+      };
+    }
+  }
+}
+
+addLoadEvent(selectAll);

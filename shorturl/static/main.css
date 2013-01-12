@@ -60,9 +60,6 @@ body {
   color: red;
   font-size: 110%;
 }
-#result.hidden {
-  visibility: hidden;
-}
 #result {
   clear: both;
   width: auto;
@@ -124,7 +121,8 @@ table#qrcode-table tr td.white {
   /*position: relative;*/
   /*top: 95%;*/
   /*right: 5%;*/
-  /*margin-top: 10%;*/
+  margin-top: 2%;
+  margin-bottom: 2%;
   font-size: 90%;
   /*float: right;*/
   text-align: center;
@@ -145,11 +143,6 @@ a:hover {
 }
 
 @media screen and (max-device-width: 680px) {
-  /*#main {*/
-    /*width: auto;*/
-  /*}*/
-/*}*/
-/*@media screen and (max-device-width: 370px) {*/
   #main {
     width: auto !important;
   }
