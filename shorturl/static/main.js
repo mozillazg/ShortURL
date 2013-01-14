@@ -34,7 +34,8 @@ function validForm() {
     document.getElementById("url").className = "";
     document.getElementById("url").value = addScheme(url);
   }
-  msg.className = "hidden";
+  //msg.className = "hidden";
+  msg.innerHTML = "";
   return true;
 }
 
@@ -150,6 +151,7 @@ function postFormData() {
     request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     request.send(data);
     document.getElementById("submit").className = "progress";
+    document.getElementById("result").style.visibility = "hidden";
   }
 }
 
