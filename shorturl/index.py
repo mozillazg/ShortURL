@@ -16,11 +16,15 @@ db = models.DB(settings.DATABASES)
 
 
 class Index(object):
+    """首页
+    """
     def GET(self):
         return render.index()
 
 
 class Shorten(object):
+    """网址缩短结果页
+    """
     def __init__(self):
         self.db = db
 
@@ -30,7 +34,9 @@ class Shorten(object):
         给 URL 添加 scheme(qq.com -> http://qq.com)
         """
         # 支持的 URL scheme
+        # 常规 URL scheme
         scheme2 = re.compile(r'(?i)^[a-z][a-z0-9+.\-]*://')
+        # 特殊 URL scheme
         scheme3 = ('git@', 'mailto:', 'javascript:', 'about:', 'opera:',
                    'afp:', 'aim:', 'apt:', 'attachment:', 'bitcoin:',
                    'callto:', 'cid:', 'data:', 'dav:', 'dns:', 'fax:', 'feed:',
@@ -44,6 +50,7 @@ class Shorten(object):
                    )
         url_lower = url.lower()
 
+        # 如果不包含规定的 URL scheme，则给网址添加 http:// 前缀
         scheme = scheme2.match(url_lower)
         if not scheme:
             for scheme in scheme3:
@@ -95,6 +102,7 @@ class Shorten(object):
         if debug:
             print repr(url)
 
+        # 判断是否已存在相应的数据
         exists = self.db.exist_expand(url)
         if exists:
             shorten = exists.shorten
@@ -103,6 +111,7 @@ class Shorten(object):
         shorten = web.ctx.homedomain + '/' + shorten
 
         if get_json:
+            # 返回 json 格式的数据
             web.header('Content-Type', 'application/json')
             return json.dumps({'shorten': shorten, 'expand': url})
         else:
@@ -113,6 +122,8 @@ class Shorten(object):
 
 
 class Expand(object):
+    """短网址跳转到相应的长网址
+    """
     def __init__(self):
         self.db = db
 
@@ -122,20 +133,29 @@ class Expand(object):
             return result.expand
 
     def GET(self, shorten):
+        """解析短网址，并作 301 跳转
+        """
         if not shorten:
             return web.seeother('/')
+
         expand = self.get_expand(shorten)
-        print repr(expand)
+        if debug:
+            print repr(expand)
         if expand:
-            return web.redirect(expand)
+            return web.redirect(expand)  # 301 跳转
         else:
             return web.index()
 
     def POST(self):
+        """解析短网址，返回 json 数据
+        """
         shorten = web.input(shorten='').shorten.encode('utf8').strip()
         web.header('Content-Type', 'application/json')
+
+        # 判断是否为有效短网址字符串
         if shorten and re.match('[a-zA-Z0-9]{5,}$', str(shorten)):
             expand = self.get_expand(shorten)
+
             if debug:
                 print repr(expand)
             if expand:
@@ -148,5 +168,6 @@ class Expand(object):
 
 
 if __name__ == '__main__':
+    # 下面这条语句用于在服务器端通过 nginx + fastcgi 部署 web.py 应用
     # web.wsgi.runwsgi = lambda func, addr=None: web.wsgi.runfcgi(func, addr)
     app.run()
