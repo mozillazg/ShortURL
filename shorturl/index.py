@@ -16,23 +16,18 @@ db = models.DB(settings.DATABASES)
 
 
 class Index(object):
-    """首页
-    """
+    """首页"""
     def GET(self):
         return render.index()
 
 
 class Shorten(object):
-    """网址缩短结果页
-    """
+    """网址缩短结果页"""
     def __init__(self):
         self.db = db
 
     def add_scheme(self, url):
-        """add_scheme(url) -> url
-
-        给 URL 添加 scheme(qq.com -> http://qq.com)
-        """
+        """给 URL 添加 scheme(qq.com -> http://qq.com)"""
         # 支持的 URL scheme
         # 常规 URL scheme
         scheme2 = re.compile(r'(?i)^[a-z][a-z0-9+.\-]*://')
@@ -62,10 +57,7 @@ class Shorten(object):
         return url
 
     def qrcode_table(self, data, type_number=4, error_correct_level='H'):
-        """qrcode_table(data) -> html
-
-        生成 QR Code html 表格，可以通过 css 控制黑白块的显示
-        """
+        """生成 QR Code html 表格，可以通过 css 控制黑白块的显示"""
         if error_correct_level == 'L':
             error_correct_level = ErrorCorrectLevel.L
         elif error_correct_level == 'M':
@@ -122,8 +114,7 @@ class Shorten(object):
 
 
 class Expand(object):
-    """短网址跳转到相应的长网址
-    """
+    """短网址跳转到相应的长网址"""
     def __init__(self):
         self.db = db
 
@@ -133,8 +124,7 @@ class Expand(object):
             return result.expand
 
     def GET(self, shorten):
-        """解析短网址，并作 301 跳转
-        """
+        """解析短网址，并作 301 跳转"""
         if not shorten:
             return web.seeother('/')
 
@@ -147,8 +137,7 @@ class Expand(object):
             return web.index()
 
     def POST(self):
-        """解析短网址，返回 json 数据
-        """
+        """解析短网址，返回 json 数据"""
         shorten = web.input(shorten='').shorten.encode('utf8').strip()
         web.header('Content-Type', 'application/json')
 
