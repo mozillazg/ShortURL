@@ -1,2 +1,2 @@
 web.py
-MySQLdb
+MySQL-python
