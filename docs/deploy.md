@@ -17,7 +17,7 @@ use shorturl/db.sql
 ## configure
 
     mkdir /home/www/shorturl-conf/
-    cp -r conf /home/www/shorturl-conf/
+    cp -r conf/* /home/www/shorturl-conf/
 
 nginx:
 
@@ -28,6 +28,7 @@ change **server_name** (`/home/www/shorturl-conf/nginx.conf`)
 ## run
 
     cd /home/www/shorturl-conf/
+    chmod +x *.sh
 * start
   `./start.sh`
 * stop
