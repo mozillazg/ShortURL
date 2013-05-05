@@ -1,6 +1,6 @@
 # Deployment
 
-## clone code:
+## clone code
 
     cd /home/www/
     git clone https://github.com/mozillazg/ShortURL.git
@@ -19,11 +19,13 @@ use shorturl/db.sql
     mkdir /home/www/shorturl-conf/
     cp -r conf/* /home/www/shorturl-conf/
 
-nginx:
+### nginx
 
 add `include /home/www/*-conf/nginx.conf;` to `http {...}` (`/etc/nginx/nginx.conf`)
 
 change **server_name** (`/home/www/shorturl-conf/nginx.conf`)
+
+    nginx -s reload
 
 ## run
 
