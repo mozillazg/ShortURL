@@ -1,4 +1,4 @@
 #!/bin/sh
 
 
-kill `pgrep  -f "/home/www/shorturl-conf/gunicorn.py"`
+kill -9 $(cat '/tmp/shorturl.pid')
