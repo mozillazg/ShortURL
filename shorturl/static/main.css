@@ -76,6 +76,9 @@ body {
 #result #shorten {
   width: 50%;
 }
+#qrcode img {
+  width: 99%;
+}
 #result input {
   min-height: 25px;
   margin-bottom: 10px;

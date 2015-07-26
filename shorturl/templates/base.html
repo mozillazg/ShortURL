@@ -1,22 +1,24 @@
-$def with(content)
+{% load staticfiles %}
+
 <!DOCTYPE html>
-<html>
+<html lang="zh">
   <head>
     <meta charset="utf-8" />
-    <!--<link rel="shortcut icon" href="/static/favicon.ico">-->
-    <title>$content.title</title>
+    <link rel="shortcut icon" href="{% static "favicon.ico" %}">
+    <title>{% block title %}网址缩短服务{% endblock title %}</title>
 　　<meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" meida="screen" href="/static/main.css" />
-    <meta name="description" content="A simple URL Shortener, powered by python and web.py." />
+    <link rel="stylesheet" meida="screen" href="{% static "main.css" %}" />
+    <meta name="description" content="A simple URL Shortener" />
   </head>
   <body>
 
-    $:content
+    <div id="main">
+      {% block content %}
+      {% endblock content %}
+    </div>
 
-    <script src="/static/qrcode.js"></script>
-    <script src="/static/main.js"></script>
+    <script src="{% static "main.js" %}"></script>
     <div id="footer">
-      <!--<span>&copy;2012-2013 mozillazg</span>-->
       <span id="source-code"><a href="https://github.com/mozillazg/ShortURL">Source Code</a></span></div>
   </body>
 </html>

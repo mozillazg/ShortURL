@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div id="form">
+  <form>
+    {% csrf_token %}
+    <input id="url" type="text" name="long_url" autofocus="autofocus" required="required" placeholder="Paste your long URL here">
+    <input id="submit" type="submit" value="Shorten" class="pointer">
+    <div id="msg" class="hidden"></div>
+  </form>
+</div>
+
+<div id="result" style="visibility: hidden;">
+  <div><input type="url" name="shorten-url" value="" id="shorten"></div>
+</div>
+{% endblock content %}
