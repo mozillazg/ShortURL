@@ -12,16 +12,14 @@ server {
     listen 80;
     client_max_body_size 1M;
     server_name 3sd.me;
-    error_log  /home/www/shorturl-conf/error.log;
-    access_log /home/www/shorturl-conf/access.log;
+    error_log  /var/log/shorturl/error.log;
+    access_log /var/log/shorturl/access.log;
 
     keepalive_timeout 5;
 
     # path for static files
     location  /static/ {
-        alias /home/www/ShortURL/shorturl/static/;
-        # autoindex on;
-        expires max;
+        alias /www/ShortURL/shorturl/asserts/;
     }
 
     location / {

@@ -1,0 +1,11 @@
+[program:shorturl]
+autostart=true
+autorestart=true
+startretries=3
+stopwaitsecs = 60
+directory = /www/ShortURL/
+command = /www/ShortURL/.env/bin/gunicorn deploy:app_wsgi -c /www/shorturl/conf/gunicorn.py
+logfile_maxbytes=5MB
+logfile_backups=2
+stdout_logfile = /var/log/shorturl.log
+redirect_stderr = true

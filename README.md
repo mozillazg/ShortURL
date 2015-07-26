@@ -1,39 +1,19 @@
 # shorturl
 
-A URL shortener site powered by Python and web.py.
+A URL shortener site powered by Python and Django.
 
 ## Features
 
 * Shorten URL.
 * QR Code.
-* Support all most URL scheme.
 
 ## Demo
 
 <http://3sd.me>
 
-## API
+## 开发
 
-Long -> Short
-
-    URL: http://3sd.me/j/shorten
-    Method: POST
-    Parameters: url
-    Return: JSON
-
-Examples:
-
-    $ curl 3sd.me/j/shorten -d "url=baidu.com"
-    {"shorten": "http://3sd.me/Jh8x3", "expand": "http://baidu.com"}
-
-Short -> Long
-
-    URL: http://3sd.me/j/expand
-    Method: POST
-    Parameters: shorten
-    Return: JSON
-
-Examples:
-
-    $ curl 3sd.me/j/expand -d "shorten=Jh8x3"
-    {"shorten": "http://3sd.me/Jh8x3", "expand": "http://baidu.com"}
+1. `cp shorturl/shorturl/settings.py.sample shorturl/shorturl/settings.py`
+2. 修改数据库信息: `vim shorturl/shorturl/settings.py`
+3. `python manage.py migrate`
+4. 运行服务: `python manage.py runserver`
