@@ -1,4 +1,4 @@
 *.swp
 .env/
 *.pyc
-shorturl/shorten/settings.py
+settings.py
