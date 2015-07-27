@@ -42,12 +42,6 @@ function validForm() {
 // 处理服务器返回的 json 数据
 function displayResult(request) {
   if (!document.getElementById) return false;
-  if (!JSON) {
-    JSON = {};
-    JSON.parse = function (json) {
-      return eval("(" + json + ")");
-    };
-  }
   if ((request.readyState == 4) && request.status == 200) {
     var responseJson = JSON.parse(request.responseText);
     var shorten = responseJson.url;
@@ -91,7 +85,10 @@ function postFormData() {
   if (request) {
     var url = document.getElementById("url").value.trim();
     var csrft_token = document.getElementsByName("csrfmiddlewaretoken")[0].value;
-    var data = '{"long_url": "' + encodeURIComponent(url) + '", "qrcode": true}';
+    var data = JSON.stringify({
+      long_url: url,
+      qrcode: true
+    });
     request.open("POST", "/", true);
     request.setRequestHeader ("X-CSRFToken", csrft_token);
     request.setRequestHeader ("X-Requested-With", "XMLHttpRequest");

@@ -26,9 +26,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'l#(u2ssx7g$98br1-m1j9m@hk+of*(affc)lbjrbp7&r@opbje'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '3sd.me',
+]
 
 
 # Application definition
@@ -110,13 +112,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
+STATIC_ROOT = os.path.join(BASE_DIR, 'asserts')
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 STATIC_URL = '/static/'
 
 # 短网址字符最短长度
-SHORTEN_CODE_MIN_LENGTH = 5
-SITE_URL = 'http://172.16.100.128:8002'
+SHORTEN_CODE_MIN_LENGTH = 8
+# 网站地址 结尾不要加 /
+SITE_URL = 'http://127.0.0.1:8000'
+# 后台管理系统地址 uri  /admin
 ADMIN_PREFIX = 'admin'
