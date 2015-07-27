@@ -19,7 +19,7 @@ server {
 
     # path for static files
     location  /static/ {
-        alias /www/ShortURL/shorturl/asserts/;
+        alias /www/ShortURL/shorturl/assets/;
     }
 
     location / {
