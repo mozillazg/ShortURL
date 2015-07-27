@@ -26,7 +26,7 @@ class ShortenURLAdmin(admin.ModelAdmin):
         return self.format_url(obj.qrcode, title='查看二维码')
     qrcode.short_description = '二维码'
 
-    exclude = ('code', 'created_at', 'updated_at')
+    readonly_fields = ('code', 'created_at', 'updated_at')
     list_display = ('id', '_url', 'qrcode', '_long_url', 'note',
                     'created_at', 'updated_at')
     list_filter = ('created_at', 'updated_at')
