@@ -4,8 +4,10 @@ from __future__ import absolute_import, print_function, unicode_literals
 import logging
 import json
 
+from django.conf import settings
 from django.http import (
-    HttpResponse, Http404, HttpResponsePermanentRedirect, JsonResponse
+    HttpResponse, Http404, HttpResponsePermanentRedirect,
+    HttpResponseRedirect, JsonResponse
 )
 from django.shortcuts import render_to_response
 from django.template import RequestContext
@@ -70,12 +72,15 @@ class ShortenView(View):
 class ExpandView(View):
     """获取长网址"""
     def get(self, request, code, *args, **kwargs):
-        """301 重定向到源地址"""
+        """重定向到源地址"""
         instance = ShortenURL.expand(code)
         if instance is None:
             raise Http404()
         else:
-            return HttpResponsePermanentRedirect(instance.long_url)
+            if settings.REDIRECT_STATUS == 301:
+                return HttpResponsePermanentRedirect(instance.long_url)
+            else:
+                return HttpResponseRedirect(instance.long_url)
 
 
 class QrcodeView(View):
