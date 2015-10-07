@@ -1,6 +1,6 @@
 # shorturl
 
-A URL shortener site powered by Python and Django.
+A URL shortener site powered by Django.
 
 ## Features
 

@@ -75,6 +75,7 @@
     wget https://github.com/Supervisor/initscripts/raw/master/redhat-init-equeffelec -O /etc/init.d/supervisord
     chmod +x /etc/init.d/supervisord
     chkconfig add supervisord
+    ```
 
 10. 启动
     ```

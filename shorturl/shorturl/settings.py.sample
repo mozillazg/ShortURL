@@ -118,9 +118,51 @@ STATICFILES_DIRS = (
 )
 STATIC_URL = '/static/'
 
+# ## LOGGING
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(pathname)s %(module)s %(lineno)s %(process)d %(thread)d %(message)s'  # noqa
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
+    'handlers': {
+        'null': {
+            'level': 'ERROR',
+            'class': 'logging.NullHandler',
+        },
+        'console': {
+            'level': 'ERROR',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose'
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'propagate': True,
+            'level': 'ERROR',
+        },
+        'django.request': {
+            'handlers': ['console'],
+            'level': 'ERROR',
+            'propagate': False,
+        },
+        'shorten': {
+            'handlers': ['console'],
+            'level': 'ERROR',
+        },
+    },
+}
+
 # 短网址字符最短长度
 SHORTEN_CODE_MIN_LENGTH = 8
 # 网站地址 结尾不要加 /
 SITE_URL = 'http://127.0.0.1:8000'
 # 后台管理系统地址 uri  /admin
 ADMIN_PREFIX = 'admin'
+REDIRECT_STATUS = 301
